@@ -265,15 +265,28 @@ and :ref:`configure the backup jobs for your TISBackup<configuring_backup_jobs>`
 Setting up the graphical user interface for the TISBackup server
 ----------------------------------------------------------------
 
+Update-rc (OLD)
+++++++++
+
 .. code-block:: bash
 
+  pip3 install -r requirements.txt
   cp /opt/tisbackup/samples/tisbackup_gui.ini /etc/tis/
   cp /opt/tisbackup/scripts/tisbackup_gui /etc/init.d/tisbackup_gui
-  cp /opt/tisbackup/scripts/tisbackup_huey /etc/init.d/tisbackup_huey
   chmod +x /etc/init.d/tisbackup_gui
-  chmod +x /etc/init.d/tisbackup_huey
-  update-rc.d tisbackup_huey defaults
   update-rc.d tisbackup_gui defaults
+
+Systemd
+++++++++
+
+.. code-block:: bash
+
+  pip3 install -r requirements.txt
+  cp /opt/tisbackup/scripts/tisbackup_gui.service  /usr/lib/systemd/system/tisbackup_gui.service
+  cp /opt/tisbackup/samples/tisbackup_gui.ini /etc/tis/
+  systemctl daemon-reload
+  systemctl enable tisbackup_gui
+  systemctl start tisbackup_gui
 
 You can now access your interface through the url
 of your TISBackup server on port 8080.
