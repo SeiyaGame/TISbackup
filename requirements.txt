@@ -1,3 +1,5 @@
 six
 requests
 paramiko
+huey==0.4.9
+redis
